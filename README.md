@@ -25,7 +25,7 @@
 "model":"Moskvich",  
 "color":"Red",  
 "year":"1975"}   
-3. GET localhost:8888\carall. Возвращает в формате JSON все авто в базе данных.
+3. GET localhost:8888\carall. Возвращает в формате JSON все авто из базы данных.
 4. DELETE localhost:8888\cardelete?=id (вместо id подставить id удаляемого авто). Удаляет авто с данным id из базы данных.
   
 ## Контакты
