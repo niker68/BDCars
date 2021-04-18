@@ -19,13 +19,14 @@
 
 Сервис предоставляет методы:
 1. GET localhost:8888\car?=id (вместо id подставить id искомого авто). Возвращает искомое авто в формате JSON.
-2. POST localhost:8888\car. Принимает и добавляет в базу данных авто в формате JSON вида 
-{"id":"1",
-"gosnomer":"1657",
-"model":"Moskvich",
-"color":"Red",
-"year":"1975"} 
+2. POST localhost:8888\car. Принимает и добавляет в базу данных авто в формате JSON вида  
+{"id":"1",  
+"gosnomer":"1657",  
+"model":"Moskvich",  
+"color":"Red",  
+"year":"1975"}   
 3. GET localhost:8888\carall. Возвращает в формате JSON все авто в базе данных.
+4. DELETE localhost:8888\cardelete?=id (вместо id подставить id удаляемого авто). Удаляет авто с данным id из базы данных.
   
 ## Контакты
   Created by [@niker68](mailto:niker68@yandex.ru)
