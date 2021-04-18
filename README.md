@@ -24,7 +24,7 @@
 "gosnomer":"1657",
 "model":"Moskvich",
 "color":"Red",
-"year":"1975"}
+"year":"1975"} 
 3. GET localhost:8888\carall. Возвращает в формате JSON все авто в базе данных.
   
 ## Контакты
