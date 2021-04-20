@@ -1,4 +1,6 @@
-package MainPackage;
+package DB;
+
+import Model.Car;
 
 import java.sql.*;
 import java.util.ArrayList;

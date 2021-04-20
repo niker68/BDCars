@@ -1,21 +1,18 @@
-package MainPackage;
+package Controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import DB.DB;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
-public class GetAllCarHTTPHandler implements HttpHandler {
+public class DeleteOneCarHTTPHandler implements HttpHandler {
+
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-
-        if("GET".equals(httpExchange.getRequestMethod())) {
+        if("DELETE".equals(httpExchange.getRequestMethod())) {
             try {
                 handleResponse(httpExchange);
             } catch (SQLException throwables) {
@@ -24,11 +21,13 @@ public class GetAllCarHTTPHandler implements HttpHandler {
                 e.printStackTrace();
             }
         } else if("POST".equals(httpExchange.getRequestMethod())) {
+        } else if("GET".equals(httpExchange.getRequestMethod())){
         }
+
 
     }
 
-    private String handleGetRequest(HttpExchange httpExchange) {
+    private String handleGetParam(HttpExchange httpExchange) {
         return httpExchange.
                 getRequestURI()
                 .toString()
@@ -46,20 +45,9 @@ public class GetAllCarHTTPHandler implements HttpHandler {
 
     private void handleResponse(HttpExchange httpExchange) throws IOException, SQLException, ClassNotFoundException {
         OutputStream outputStream = httpExchange.getResponseBody();
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String  htmlResponse;
-        if (httpExchange.getRequestURI().toString().contains("?")) {
-            String str0 = httpExchange.getRequestURI().toString().split("\\?")[1];
-            String[] params = str0.split("&");
-            Map<String, String> mapParam = new HashMap<String, String>();
-            for (String param : params) {
-                String name = param.split("=")[0];
-                String value = param.split("=")[1];
-                mapParam.put(name, value);
-            }
-            System.out.println(mapParam.toString());
-              htmlResponse = ow.writeValueAsString(DB.readAll(mapParam.get("model"),mapParam.get("color")));
-        }else {htmlResponse = ow.writeValueAsString(DB.readAll());}
+        System.out.println(Integer.parseInt(handleGetParam(httpExchange)));
+        DB.delete(Integer.parseInt(handleGetParam(httpExchange)));
+        String  htmlResponse = "Car with id = "+ handleGetParam(httpExchange) +" deleted";
         httpExchange.sendResponseHeaders(200, htmlResponse.length());
         outputStream.write(htmlResponse.getBytes());
         outputStream.flush();

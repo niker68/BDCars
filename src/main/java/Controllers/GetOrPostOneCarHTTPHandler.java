@@ -1,5 +1,7 @@
-package MainPackage;
+package Controllers;
 
+import Model.Car;
+import DB.DB;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.sun.net.httpserver.HttpExchange;
@@ -18,6 +20,7 @@ public class GetOrPostOneCarHTTPHandler implements HttpHandler  {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
         if(httpExchange.getRequestMethod().equals("GET")) {
+            System.out.println("GET");
             id = Integer.parseInt(handleGetParam(httpExchange));
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             try {
@@ -28,7 +31,7 @@ public class GetOrPostOneCarHTTPHandler implements HttpHandler  {
             }
         }
         else if("POST".equals(httpExchange.getRequestMethod())) {
-
+            System.out.println("POST");
             HashMap result;
             try (final BufferedReader in = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()))) {
                 String inputLine;

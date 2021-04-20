@@ -1,5 +1,8 @@
-package MainPackage;
+package Service;
 
+import Controllers.DeleteOneCarHTTPHandler;
+import Controllers.GetAllCarHTTPHandler;
+import Controllers.GetOrPostOneCarHTTPHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -14,7 +17,5 @@ public class CarServiceRest{
         server.createContext("/cardelete", new DeleteOneCarHTTPHandler());
         server.setExecutor(null);
         server.start();
-        //Logger logger = new Logger();
-        //logger.info(" Server started on port 8000");
     }
 }
